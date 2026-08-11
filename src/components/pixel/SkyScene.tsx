@@ -129,7 +129,7 @@ export function SkyScene() {
       {/* distant mountain range */}
       <motion.div
         style={{ y: midY }}
-        className="absolute bottom-[132px] left-0 flex w-full items-end justify-around opacity-45 blur-[1px] sm:bottom-[150px]"
+        className="absolute bottom-[190px] left-0 flex w-full items-start justify-around opacity-45 blur-[1px] sm:bottom-[210px]"
       >
         <PixelMountain scale={4} tone="oklch(0.84 0.05 300)" />
         <PixelMountain scale={6} tone="oklch(0.86 0.05 320)" />
@@ -140,7 +140,7 @@ export function SkyScene() {
       {/* near mountains */}
       <motion.div
         style={{ y: nearY }}
-        className="absolute bottom-[74px] left-0 flex w-full items-end justify-between opacity-85 sm:bottom-[84px]"
+        className="absolute bottom-[120px] left-0 flex w-full items-start justify-between opacity-85 sm:bottom-[140px]"
       >
         <PixelMountain scale={5} />
         <PixelMountain scale={8} tone="oklch(0.78 0.08 300)" />
@@ -150,7 +150,7 @@ export function SkyScene() {
       {/* tree line */}
       <motion.div
         style={{ y: nearY }}
-        className="absolute bottom-[52px] left-0 flex w-full items-end justify-around sm:bottom-[76px]"
+        className="absolute bottom-[56px] left-0 flex w-full items-start justify-around sm:bottom-[80px]"
       >
         {[4, 3, 5, 3, 4, 3, 5, 4].map((s, i) => (
           <span
