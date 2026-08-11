@@ -67,9 +67,9 @@ export function SkyScene() {
         className="absolute left-1/2 top-[12%] -translate-x-1/2"
       >
         <div className="relative h-24 w-24 sm:h-32 sm:w-32">
-          <div className="absolute inset-0 animate-pulse-slow rounded-full bg-[color-mix(in_oklab,var(--peach)_70%,white)] blur-xl" />
-          <div className="absolute inset-4 bg-[color-mix(in_oklab,var(--peach)_85%,white)]" />
-          <div className="absolute inset-6 bg-cream" />
+          <div className="absolute -inset-6 animate-pulse-slow rounded-full bg-[color-mix(in_oklab,var(--peach)_70%,white)] blur-2xl" />
+          <div className="absolute inset-2 rounded-full border-[6px] border-[color-mix(in_oklab,var(--peach)_85%,white)] bg-cream" />
+          <div className="absolute inset-2 rounded-full [box-shadow:inset_0_0_0_10px_color-mix(in_oklab,var(--pink)_45%,transparent)]" />
         </div>
       </motion.div>
 
@@ -129,7 +129,7 @@ export function SkyScene() {
       {/* distant mountain range */}
       <motion.div
         style={{ y: midY }}
-        className="absolute bottom-24 left-0 flex w-full items-end justify-around opacity-45 blur-[1px] sm:bottom-28"
+        className="absolute bottom-[132px] left-0 flex w-full items-end justify-around opacity-45 blur-[1px] sm:bottom-[150px]"
       >
         <PixelMountain scale={4} tone="oklch(0.84 0.05 300)" />
         <PixelMountain scale={6} tone="oklch(0.86 0.05 320)" />
@@ -140,7 +140,7 @@ export function SkyScene() {
       {/* near mountains */}
       <motion.div
         style={{ y: nearY }}
-        className="absolute bottom-12 left-0 flex w-full items-end justify-between opacity-85 sm:bottom-16"
+        className="absolute bottom-[74px] left-0 flex w-full items-end justify-between opacity-85 sm:bottom-[84px]"
       >
         <PixelMountain scale={5} />
         <PixelMountain scale={8} tone="oklch(0.78 0.08 300)" />
@@ -150,7 +150,7 @@ export function SkyScene() {
       {/* tree line */}
       <motion.div
         style={{ y: nearY }}
-        className="absolute bottom-8 left-0 flex w-full items-end justify-around sm:bottom-12"
+        className="absolute bottom-[52px] left-0 flex w-full items-end justify-around sm:bottom-[76px]"
       >
         {[4, 3, 5, 3, 4, 3, 5, 4].map((s, i) => (
           <span
