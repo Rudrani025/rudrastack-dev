@@ -228,21 +228,9 @@ export const EXPERIENCE = [
 
 export const ACHIEVEMENTS = [
   {
-    title: "AWS Fundamentals Certificate",
-    org: "Amazon Web Services",
-    date: "2025",
-    link: "https://github.com/rudrani025",
-  },
-  {
     title: "Web Development Internship Certificate",
     org: "Imagine Script Pvt. Ltd.",
     date: "Dec 2024",
-    link: "https://github.com/rudrani025",
-  },
-  {
-    title: "Introduction to Generative AI Studio",
-    org: "Google Cloud / Workshop",
-    date: "2026",
     link: "https://github.com/rudrani025",
   },
   {
