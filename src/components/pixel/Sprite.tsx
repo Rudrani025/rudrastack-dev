@@ -1,10 +1,11 @@
 type SpriteProps = {
   map: string[];
   palette: Record<string, string>;
-  scale?: number;
-  className?: string;
-  label?: string;
+  scale?: number | undefined;
+  className?: string | undefined;
+  label?: string | undefined;
 };
+
 
 /** Renders a pixel-art sprite from a character map using CSS box-shadow pixels. */
 export function Sprite({ map, palette, scale = 4, className, label }: SpriteProps) {
