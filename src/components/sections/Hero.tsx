@@ -2,17 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { BRAND } from "@/data/portfolio";
-import { PixelCloud, PixelGirl, PixelMountain } from "@/components/pixel/Sprite";
+import { PixelGirl } from "@/components/pixel/Sprite";
 import { PixelTerminal } from "@/components/pixel/PixelTerminal";
-import { GroundStrip, Stars } from "@/components/pixel/Bits";
+import { GroundStrip } from "@/components/pixel/Bits";
+import { SkyScene } from "@/components/pixel/SkyScene";
 import { scrollToSection, useSfx } from "@/components/SoundProvider";
-
-const CLOUDS = [
-  { top: "14%", scale: 6, duration: 52, delay: 0 },
-  { top: "26%", scale: 4, duration: 68, delay: -14 },
-  { top: "44%", scale: 5, duration: 60, delay: -30 },
-  { top: "58%", scale: 3, duration: 76, delay: -8 },
-];
 
 export function Hero() {
   const sfx = useSfx();
@@ -22,26 +16,8 @@ export function Hero() {
       id="start"
       className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden sky-gradient px-4 pt-24 pb-28"
     >
-      <Stars count={36} />
-      {CLOUDS.map((c, i) => (
-        <div
-          key={i}
-          aria-hidden
-          className="absolute"
-          style={{
-            top: c.top,
-            animation: `drift ${c.duration}s linear ${c.delay}s infinite`,
-          }}
-        >
-          <PixelCloud scale={c.scale} tone="var(--cream)" />
-        </div>
-      ))}
+      <SkyScene />
 
-      <div aria-hidden className="absolute bottom-10 left-0 flex w-full items-end justify-between opacity-80 sm:bottom-14">
-        <PixelMountain scale={5} />
-        <PixelMountain scale={7} tone="oklch(0.78 0.08 300)" />
-        <PixelMountain scale={4} />
-      </div>
 
       <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-6">
         <motion.img
