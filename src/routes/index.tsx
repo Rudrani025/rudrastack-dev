@@ -69,9 +69,8 @@ function Index() {
       <main
         className={`transition-opacity duration-500 ${booted ? "opacity-100" : "opacity-0"}`}
       >
-        <h1 className="sr-only">
-          {BRAND.full} — {BRAND.person}, {BRAND.role}
-        </h1>
+
+
         <Hero />
         <About />
         <Skills />
