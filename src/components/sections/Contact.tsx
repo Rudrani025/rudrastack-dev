@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Github, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
 import { BRAND } from "@/data/portfolio";
 import { LevelTitle, Stars } from "@/components/pixel/Bits";
 import { PixelCloud, PixelGirl } from "@/components/pixel/Sprite";
 import { useSfx } from "@/components/SoundProvider";
+import { submitContactMessage } from "@/lib/contact.functions";
 
 const LINKS = [
   { icon: Mail, label: "Email", value: BRAND.email, href: `mailto:${BRAND.email}` },
@@ -17,16 +19,30 @@ const LINKS = [
 
 export function Contact() {
   const sfx = useSfx();
+  const send = useServerFn(submitContactMessage);
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     sfx.click();
-    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setBusy(true);
+    setError(null);
+    try {
+      const result = await send({ data: form });
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
