@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Github, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
 import { BRAND } from "@/data/portfolio";
 import { LevelTitle, Stars } from "@/components/pixel/Bits";
 import { PixelCloud, PixelGirl } from "@/components/pixel/Sprite";
 import { useSfx } from "@/components/SoundProvider";
+import { submitContactMessage } from "@/lib/contact.functions";
 
 const LINKS = [
   { icon: Mail, label: "Email", value: BRAND.email, href: `mailto:${BRAND.email}` },
@@ -17,16 +19,30 @@ const LINKS = [
 
 export function Contact() {
   const sfx = useSfx();
+  const send = useServerFn(submitContactMessage);
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     sfx.click();
-    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setBusy(true);
+    setError(null);
+    try {
+      const result = await send({ data: form });
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -43,10 +59,10 @@ export function Contact() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">
-        <LevelTitle level="08" title="READY FOR THE NEXT LEVEL?" />
+        <LevelTitle level="08" title="LET'S BUILD SOMETHING AWESOME 🚀" />
         <p className="mx-auto mb-10 max-w-lg text-center text-sm text-cream sm:text-base">
-          Let&apos;s build something awesome. I&apos;m always open to discussing exciting projects
-          and new opportunities.
+          I&apos;m always open to discussing exciting projects, new opportunities, collaborations,
+          and ideas. Feel free to reach out!
         </p>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -120,14 +136,26 @@ export function Contact() {
             </div>
             <button
               type="submit"
+              disabled={busy}
               onMouseEnter={sfx.hover}
-              className="pixel press pixel-border w-full bg-primary px-4 py-3 text-[8px] text-primary-foreground sm:text-[10px]"
+              className="pixel press pixel-border w-full bg-primary px-4 py-3 text-[8px] text-primary-foreground disabled:opacity-60 sm:text-[10px]"
             >
-              SEND MESSAGE →
+              {busy ? "SENDING…" : "SEND MESSAGE →"}
             </button>
             {sent && (
-              <p className="pixel text-[7px] text-primary" role="status">
-                ✓ MAIL APP OPENED — THANK YOU!
+              <div
+                className="pixel-border animate-[bob_0.6s_ease-in-out] bg-pink/60 px-3 py-3"
+                role="status"
+              >
+                <p className="pixel text-[8px] text-grape">✓ MESSAGE SENT SUCCESSFULLY!</p>
+                <p className="mt-2 text-xs text-grape/80">
+                  Thanks for reaching out. I&apos;ll get back to you soon.
+                </p>
+              </div>
+            )}
+            {error && (
+              <p className="pixel text-[7px] leading-relaxed text-destructive" role="alert">
+                ✕ {error}
               </p>
             )}
           </form>

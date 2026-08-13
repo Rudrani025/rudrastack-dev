@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Volume2, VolumeX, X } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
+
 import { BRAND, NAV } from "@/data/portfolio";
 import { scrollToSection, useSfx } from "@/components/SoundProvider";
 
@@ -35,11 +35,6 @@ export function Header() {
           className="flex items-center gap-2"
           aria-label={`${BRAND.full} home`}
         >
-          <img
-            src={logo.url}
-            alt={`${BRAND.full} logo — pixel-art R with cloud and DevOps icons`}
-            className="h-8 w-8 object-contain sm:h-10 sm:w-10"
-          />
           <span className="pixel text-[9px] text-grape sm:text-[11px]">
             {BRAND.name}
             <span className="text-primary">{BRAND.tld}</span>
