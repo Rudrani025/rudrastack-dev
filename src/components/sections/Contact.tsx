@@ -136,14 +136,26 @@ export function Contact() {
             </div>
             <button
               type="submit"
+              disabled={busy}
               onMouseEnter={sfx.hover}
-              className="pixel press pixel-border w-full bg-primary px-4 py-3 text-[8px] text-primary-foreground sm:text-[10px]"
+              className="pixel press pixel-border w-full bg-primary px-4 py-3 text-[8px] text-primary-foreground disabled:opacity-60 sm:text-[10px]"
             >
-              SEND MESSAGE →
+              {busy ? "SENDING…" : "SEND MESSAGE →"}
             </button>
             {sent && (
-              <p className="pixel text-[7px] text-primary" role="status">
-                ✓ MAIL APP OPENED — THANK YOU!
+              <div
+                className="pixel-border animate-[bob_0.6s_ease-in-out] bg-pink/60 px-3 py-3"
+                role="status"
+              >
+                <p className="pixel text-[8px] text-grape">✓ MESSAGE SENT SUCCESSFULLY!</p>
+                <p className="mt-2 text-xs text-grape/80">
+                  Thanks for reaching out. I&apos;ll get back to you soon.
+                </p>
+              </div>
+            )}
+            {error && (
+              <p className="pixel text-[7px] leading-relaxed text-destructive" role="alert">
+                ✕ {error}
               </p>
             )}
           </form>
