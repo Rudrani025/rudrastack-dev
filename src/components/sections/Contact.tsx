@@ -59,10 +59,10 @@ export function Contact() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">
-        <LevelTitle level="08" title="READY FOR THE NEXT LEVEL?" />
+        <LevelTitle level="08" title="LET'S BUILD SOMETHING AWESOME 🚀" />
         <p className="mx-auto mb-10 max-w-lg text-center text-sm text-cream sm:text-base">
-          Let&apos;s build something awesome. I&apos;m always open to discussing exciting projects
-          and new opportunities.
+          I&apos;m always open to discussing exciting projects, new opportunities, collaborations,
+          and ideas. Feel free to reach out!
         </p>
 
         <div className="grid gap-6 md:grid-cols-2">
