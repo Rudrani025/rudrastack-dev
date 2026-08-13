@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Volume2, VolumeX, X } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
+
 import { BRAND, NAV } from "@/data/portfolio";
 import { scrollToSection, useSfx } from "@/components/SoundProvider";
 
