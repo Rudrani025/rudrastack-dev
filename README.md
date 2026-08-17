@@ -1,41 +1,214 @@
-# Welcome to your Lovable project
+# ☁️ RudraStack.dev
 
-This project was built with [Lovable](https://lovable.dev).
+### Where Creativity Meets Code, Cloud & Automation.
 
-## Build with Lovable
+> A personal Cloud & DevOps portfolio built to showcase practical projects, technical interests, and my approach to modern infrastructure.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+🌐 **[View Live Portfolio](https://rudrastack-dev.lovable.app/)**
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+---
 
-## Development
+## ✦ The Idea
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Most portfolios tell you what someone knows.
 
-```sh
-git clone <this-repository-url>
+**RudraStack.dev tries to show it.**
+
+The website combines a creative, pixel-inspired interface with practical concepts from **Cloud Computing, DevOps, Web Development, and Automation**.
+
+My approach is simple:
+
+```text
+Build → Automate → Deploy → Improve
+```
+
+Instead of presenting a long list of technologies, the portfolio focuses on **what I build with them**.
+
+---
+
+## ◈ Architecture
+
+The project separates the portfolio interface from its backend services and contact management system.
+
+```text
+                         ┌─────────────────┐
+                         │     Visitor     │
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │  RudraStack.dev │
+                         │   React + TS    │
+                         └────────┬────────┘
+                                  │
+                         ┌────────┴────────┐
+                         │                 │
+                         ▼                 ▼
+                  ┌─────────────┐   ┌─────────────┐
+                  │  Portfolio  │   │   Contact   │
+                  │     UI      │   │     Form    │
+                  └─────────────┘   └──────┬──────┘
+                                           │
+                                           ▼
+                                    ┌─────────────┐
+                                    │  Supabase   │
+                                    │  DB + Auth  │
+                                    └──────┬──────┘
+                                           │
+                                           ▼
+                                    ┌─────────────┐
+                                    │    Admin    │
+                                    │  Dashboard  │
+                                    └─────────────┘
+```
+
+---
+
+## ◈ Built With
+
+| Layer           | Technology         |
+| --------------- | ------------------ |
+| Interface       | React + TypeScript |
+| Styling         | Tailwind CSS       |
+| Backend         | Supabase           |
+| Authentication  | Supabase Auth      |
+| Database        | PostgreSQL         |
+| Version Control | Git + GitHub       |
+| Development     | Lovable            |
+
+---
+
+## ◈ What It Does
+
+### For Visitors
+
+* Explore my work
+* View selected projects
+* Learn about my technical interests
+* Get in touch through the contact form
+
+### For the Owner
+
+* Receive contact submissions
+* Manage messages
+* Search and filter submissions
+* Update message status
+* Access the protected admin dashboard
+
+---
+
+## ◈ Engineering Focus
+
+The project focuses on more than visual design.
+
+```text
+Responsive UI
+      ↓
+Component-Based Development
+      ↓
+Backend Integration
+      ↓
+Authentication
+      ↓
+Database Security
+      ↓
+Maintainable Code
+```
+
+The portfolio is also an experiment in presenting technical concepts through **visual storytelling instead of traditional resume-style pages**.
+
+---
+
+## ◈ Run Locally
+
+### Requirements
+
+* Node.js
+* npm
+* Git
+
+### Setup
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+```
+
+Navigate to the project:
+
+```bash
 cd <repository-name>
-npm i
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-## Built with
+Create a `.env` file based on `.env.example` and configure the required environment variables.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+> 🔐 **Never commit API keys, passwords, service-role keys, or other sensitive credentials to GitHub.**
 
-## Contact system & admin dashboard setup
+---
 
-1. **Create a Supabase project** (already provisioned automatically when using Lovable Cloud).
-2. **Create the `contact_messages` table** — columns: `id`, `name`, `email`, `message`, `status` (`new` | `read` | `replied`, default `new`), `created_at`.
-3. **Enable Supabase Authentication** with the email/password provider. No public sign-up page exists.
-4. **Create the admin user** — open `/admin/login` and use "First-time admin setup" once; only the owner email is accepted.
-5. **Configure Row Level Security** — anyone may insert a validated message; only the authenticated owner can read, update, or delete.
-6. **Add environment variables** — copy `.env.example` to `.env` and fill in the values. `SUPABASE_SERVICE_ROLE_KEY` and `EMAIL_API_KEY` are server-side only and must never be prefixed with `VITE_`.
-7. **Configure email notifications** — set `LOVABLE_API_KEY`, `EMAIL_SENDER_DOMAIN`, and `ADMIN_EMAIL`. Until a verified sender domain exists, notifications are logged server-side and submissions still succeed.
-8. **Deploy the website.**
-9. **Open `/admin`** and log in to read, filter, search, reply to, and delete messages.
+## ◈ Road Ahead
+
+RudraStack.dev is an evolving project.
+
+Future improvements may include:
+
+```text
+CI/CD
+ ├── GitHub Actions
+ └── Automated deployments
+
+Infrastructure
+ ├── Terraform
+ └── AWS
+
+Containers
+ └── Docker
+
+Observability
+ └── Monitoring & Logging
+```
+
+---
+
+## ◈ Why I Built It
+
+I wanted to create a portfolio that represents more than a list of technologies.
+
+**RudraStack.dev brings development, cloud concepts, backend integration, automation, and design together in one project.**
+
+It is designed to grow alongside my technical journey.
+
+---
+
+## ◈ Connect
+
+**Rudrani Gawande**
+*Cloud & DevOps Enthusiast*
+
+🌐 **[Portfolio](https://rudrastack-dev.lovable.app/)**
+💻 **[GitHub](https://github.com/rudrani025)**
+
+---
+
+<div align="center">
+
+### `BUILD → AUTOMATE → DEPLOY → IMPROVE`
+
+☁️ **RudraStack.dev**
+
+*Where Creativity Meets Code, Cloud & Automation.*
+
+</div>
