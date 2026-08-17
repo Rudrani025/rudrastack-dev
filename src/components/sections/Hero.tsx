@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
 import { BRAND } from "@/data/portfolio";
 import { PixelGirl } from "@/components/pixel/Sprite";
 import { PixelTerminal } from "@/components/pixel/PixelTerminal";
@@ -19,16 +18,7 @@ export function Hero() {
       <SkyScene />
 
 
-      <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-6">
-        <motion.img
-          src={logo.url}
-          alt={`${BRAND.full} logo — pixel-art R with AWS, Docker, Kubernetes, Terraform and Linux icons`}
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="h-24 w-24 object-contain sm:h-32 sm:w-32"
-        />
-
+      <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-5">
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

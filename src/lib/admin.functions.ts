@@ -25,7 +25,7 @@ export const listContactMessages = createServerFn({ method: "GET" })
 
 export const updateMessageStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z.object({ id: z.string().uuid(), status: z.enum(["new", "read", "replied"]) }).parse(input),
   )
   .handler(async ({ data, context }) => {
@@ -39,7 +39,7 @@ export const updateMessageStatus = createServerFn({ method: "POST" })
 
 export const deleteContactMessage = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
+  .validator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ data, context }) => {
     const { error } = await context.supabase
       .from("contact_messages")
