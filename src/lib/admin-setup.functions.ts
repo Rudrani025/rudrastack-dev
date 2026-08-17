@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const OWNER_EMAIL = "rudranigawande228@gmail.com";
+const DEFAULT_OWNER_EMAIL = "rudranigawande228@gmail.com";
 
 /**
  * One-time bootstrap so the portfolio owner can create her own admin account
@@ -18,7 +18,8 @@ export const bootstrapAdminAccount = createServerFn({ method: "POST" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    if (data.email.toLowerCase() !== OWNER_EMAIL) {
+    const ownerEmail = process.env["ADMIN_EMAIL"] ?? DEFAULT_OWNER_EMAIL;
+    if (data.email.toLowerCase() !== ownerEmail) {
       return { ok: false as const, error: "This email is not allowed to be an admin." };
     }
 
@@ -29,7 +30,7 @@ export const bootstrapAdminAccount = createServerFn({ method: "POST" })
     });
     if (listError) return { ok: false as const, error: "Setup unavailable right now." };
 
-    const already = existing.users.some((u) => u.email?.toLowerCase() === OWNER_EMAIL);
+    const already = existing.users.some((u) => u.email?.toLowerCase() === ownerEmail);
     if (already) {
       return {
         ok: false as const,
