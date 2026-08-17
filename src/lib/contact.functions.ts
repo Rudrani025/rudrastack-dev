@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
 
-const OWNER_EMAIL = "rudranigawande228@gmail.com";
+const DEFAULT_OWNER_EMAIL = "rudranigawande228@gmail.com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -16,6 +16,7 @@ export const submitContactMessage = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => contactSchema.parse(input))
   .handler(async ({ data }): Promise<ContactResult> => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const ownerEmail = process.env["ADMIN_EMAIL"] ?? DEFAULT_OWNER_EMAIL;
     const ip =
       getRequestHeader("cf-connecting-ip") ??
       getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim() ??
@@ -58,14 +59,14 @@ export const submitContactMessage = createServerFn({ method: "POST" })
       return { ok: false, error: "Something went wrong. Please try again." };
     }
 
-    await notifyOwner(data);
+    await notifyOwner(data, ownerEmail);
     return { ok: true };
   });
 
-async function notifyOwner(data: { name: string; email: string; message: string }) {
+async function notifyOwner(data: { name: string; email: string; message: string }, to: string) {
   try {
     const { sendOwnerNotification } = await import("./contact-notify.server");
-    await sendOwnerNotification({ ...data, to: OWNER_EMAIL });
+    await sendOwnerNotification({ ...data, to });
   } catch (error) {
     // Notification is best-effort: the message is already stored safely.
     console.error("owner notification skipped", error);
