@@ -36,6 +36,6 @@ npm run dev
 4. **Create the admin user** — open `/admin/login` and use "First-time admin setup" once; only the owner email is accepted.
 5. **Configure Row Level Security** — anyone may insert a validated message; only the authenticated owner can read, update, or delete.
 6. **Add environment variables** — copy `.env.example` to `.env` and fill in the values. `SUPABASE_SERVICE_ROLE_KEY` and `EMAIL_API_KEY` are server-side only and must never be prefixed with `VITE_`.
-7. **Configure email notifications** — set `EMAIL_API_KEY`, `EMAIL_SENDER_DOMAIN`, and `ADMIN_EMAIL`. Until a verified sender domain exists, notifications are logged server-side and submissions still succeed.
+7. **Configure email notifications** — set `LOVABLE_API_KEY`, `EMAIL_SENDER_DOMAIN`, and `ADMIN_EMAIL`. Until a verified sender domain exists, notifications are logged server-side and submissions still succeed.
 8. **Deploy the website.**
 9. **Open `/admin`** and log in to read, filter, search, reply to, and delete messages.
