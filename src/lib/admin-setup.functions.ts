@@ -9,7 +9,7 @@ const OWNER_EMAIL = "rudranigawande228@gmail.com";
  * refuses once that account exists. Passwords are handled by Cloud Auth.
  */
 export const bootstrapAdminAccount = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({
         email: z.string().trim().email().max(255),

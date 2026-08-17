@@ -13,7 +13,7 @@ const contactSchema = z.object({
 export type ContactResult = { ok: true } | { ok: false; error: string };
 
 export const submitContactMessage = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => contactSchema.parse(input))
+  .validator((input: unknown) => contactSchema.parse(input))
   .handler(async ({ data }): Promise<ContactResult> => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const ownerEmail = process.env["ADMIN_EMAIL"] ?? DEFAULT_OWNER_EMAIL;
