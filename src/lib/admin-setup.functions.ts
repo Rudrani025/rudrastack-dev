@@ -50,7 +50,8 @@ export const bootstrapAdminAccount = createServerFn({ method: "POST" })
 
 export const adminAccountExists = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const ownerEmail = process.env["ADMIN_EMAIL"] ?? DEFAULT_OWNER_EMAIL;
   const { data, error } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
   if (error) return { exists: true };
-  return { exists: data.users.some((u) => u.email?.toLowerCase() === OWNER_EMAIL) };
+  return { exists: data.users.some((u) => u.email?.toLowerCase() === ownerEmail) };
 });
