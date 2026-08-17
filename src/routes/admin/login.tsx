@@ -59,7 +59,7 @@ function AdminLogin() {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: "/admin/", replace: true });
+        navigate({ to: "/admin", replace: true });
         return;
       }
       if (mode === "forgot") {
