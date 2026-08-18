@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
 
-const DEFAULT_OWNER_EMAIL = "rudranigawande228@gmail.com";
+const DEFAULT_OWNER_EMAIL = "rudra.hobique@gmail.com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -59,16 +59,23 @@ export const submitContactMessage = createServerFn({ method: "POST" })
       return { ok: false, error: "Something went wrong. Please try again." };
     }
 
-    await notifyOwner(data, ownerEmail);
+    const notified = await notifyOwner(data, ownerEmail);
+    if (!notified) {
+      return {
+        ok: false,
+        error: "Your message was saved, but the email notification failed. Please email me directly.",
+      };
+    }
     return { ok: true };
   });
 
 async function notifyOwner(data: { name: string; email: string; message: string }, to: string) {
   try {
     const { sendOwnerNotification } = await import("./contact-notify.server");
-    await sendOwnerNotification({ ...data, to });
+    const result = await sendOwnerNotification({ ...data, to });
+    return result.sent;
   } catch (error) {
-    // Notification is best-effort: the message is already stored safely.
-    console.error("owner notification skipped", error);
+    console.error("owner notification failed", error);
+    return false;
   }
 }
