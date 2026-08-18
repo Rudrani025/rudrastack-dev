@@ -1,0 +1,1 @@
+DELETE FROM public.contact_messages WHERE id = '2b5705a2-3a3d-4362-85a2-ddc501c794ae';
