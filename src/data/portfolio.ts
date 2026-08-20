@@ -5,7 +5,7 @@ export const BRAND = {
   person: "Rudrani Gawande",
   role: "Cloud & DevOps Engineer",
   tagline: "Where Creativity Meets Code, Cloud & Automation.",
-  email: "rudranigawande228@gmail.com",
+  email: "rudra.hobique@gmail.com",
   phone: "+91 81808 54303",
   location: "Yavatmal, Maharashtra, India",
   github: "https://github.com/rudrani025",

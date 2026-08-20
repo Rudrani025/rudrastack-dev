@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
 
-const DEFAULT_OWNER_EMAIL = "rudrani.hobique@gmail.com";
+const DEFAULT_OWNER_EMAIL = "rudra.hobique@gmail.com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
