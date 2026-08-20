@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const DEFAULT_OWNER_EMAIL = "rudranigawande228@gmail.com";
+const DEFAULT_OWNER_EMAIL = "rudra.hobique@gmail.com";
 
 /**
  * One-time bootstrap so the portfolio owner can create her own admin account
